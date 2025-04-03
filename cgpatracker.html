@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CGPA Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #bdc5d1 0%, #657691 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            background: #c2e9fb;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        canvas {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎓 CGPA Tracker</h2>
+        <table>
+            <tr>
+                <th>Semester</th>
+                <th>SGPA</th>
+            </tr>
+            <script>
+                for (let i = 1; i <= 8; i++) {
+                    document.write(`<tr>
+                        <td>Semester ${i}</td>
+                        <td><input type='number' id='sgpa${i}' min='0' max='10' step='0.01' placeholder='0.00'></td>
+                    </tr>`);
+                }
+            </script>
+        </table>
+        <button onclick="calculateCGPA()">Calculate CGPA</button>
+        <button onclick="location.href='sgpa.html'" style="margin-top: 10px;">SGPA calculateSGPA</button>
+        <h3 id="result"></h3>
+        <canvas id="cgpaChart"></canvas>
+    </div>
+    <script>
+        let cgpaChart;
+        function calculateCGPA() {
+            let totalSGPA = 0, count = 0;
+            let semesters = [];
+            let cgpaValues = [];
+            
+            for (let i = 1; i <= 8; i++) {
+                let sgpa = parseFloat(document.getElementById(`sgpa${i}`).value) || 0;
+                if (sgpa > 0) {
+                    totalSGPA += sgpa;
+                    count++;
+                    let cgpa = (totalSGPA / count).toFixed(2);
+                    semesters.push(`Sem ${i}`);
+                    cgpaValues.push(parseFloat(cgpa));
+                }
+            }
+            
+            let finalCGPA = count ? (totalSGPA / count).toFixed(2) : "NA";
+            document.getElementById("result").innerText = `Your CGPA is: ${finalCGPA}`;
+            updateChart(semesters, cgpaValues);
+        }
+        
+        function updateChart(semesters, cgpaValues) {
+            const ctx = document.getElementById('cgpaChart').getContext('2d');
+            if (cgpaChart) cgpaChart.destroy();
+            cgpaChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: semesters,
+                    datasets: [{
+                        label: 'CGPA Progress',
+                        data: cgpaValues,
+                        borderColor: '#4facfe',
+                        backgroundColor: 'rgba(79, 172, 254, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            suggestedMin: 5,
+                            suggestedMax: 10
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

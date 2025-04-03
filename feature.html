@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powerful Features</title>
+    <style>
+        :root {
+            --dark-navy: #03152B;
+            --deep-midnight: #021C35;
+            --blue-gray: #0A2A55;
+            --muted-navy: #153C73;
+            --slate-blue: #0C417A;
+            --white: #ffffff;
+            --accent: #1E90FF;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--deep-midnight);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #1E90FF, #87CEFA);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #B0C4DE;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background-color: var(--slate-blue);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(30, 144, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(30, 144, 255, 0.4);
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-description {
+            color: #B0C4DE;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .learn-more:hover {
+            color: #87CEFA;
+        }
+
+        .learn-more::after {
+            content: "→";
+            margin-left: 0.5rem;
+            transition: margin-left 0.2s;
+        }
+
+        .learn-more:hover::after {
+            margin-left: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Powerful Features</h1>
+            <p class="subtitle">Our comprehensive suite of tools designed to elevate your academic performance and streamline your study routine.</p>
+        </header>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-content">
+                    <h3 class="feature-title">Smart Schedule</h3>
+                    <p class="feature-description">AI-powered timetable generator that adapts to your learning style and goals.</p>
+                    <a href="timetable.html" class="learn-more">Learn more</a>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <h3 class="feature-title">CGPA Tracker</h3>
+                    <p class="feature-description">Track your academic progress with detailed analytics and grade predictions.</p>
+                    <a href="cgpatracker.html" class="learn-more">Learn more</a>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <h3 class="feature-title">AI Tools</h3>
+                    <p class="feature-description">Tools of AI that can enhance your study experience.</p>
+                    <a href="features.html" class="learn-more">Learn more</a>
+                </div>
+            </div> <!-- Fixed missing closing div -->
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <h3 class="feature-title">Goal Tracking</h3>
+                    <p class="feature-description">Set academic goals and track your progress with visual dashboards and reminders.</p>
+                    <a href="goal.html" class="learn-more">Learn more</a> <!-- Make sure to update this link -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

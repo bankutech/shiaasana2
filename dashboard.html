@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Analytics Dashboard</title>
+    <style>
+        :root {
+            --dark-navy: #020818;
+            --deep-midnight: #010717;
+            --blue-gray: #1f2a3c;
+            --muted-navy: #1e293b;
+            --slate-blue: #202b3d;
+            --white: #ffffff;
+            --accent: #4f46e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--deep-midnight);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            background-color: var(--slate-blue);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background-color: var(--blue-gray);
+        }
+
+        .checkmark {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced Analytics Dashboard</h1>
+            <p class="subtitle">Gain valuable insights into your study habits, performance trends, and areas for improvement with our comprehensive analytics platform.</p>
+        </header>
+
+        <div class="features">
+            <div class="feature-item">
+                <span class="checkmark">✔</span>
+                <div class="feature-text">
+                    <h3>Track your CGPA progression over time</h3>
+                    <p>Visualize your academic growth and identify patterns in your performance.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="checkmark">✔</span>
+                <div class="feature-text">
+                    <h3>Identify your strongest and weakest subjects</h3>
+                    <p>Discover which subjects you excel in and which need more attention.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="checkmark">✔</span>
+                <div class="feature-text">
+                    <h3>Analyze study time efficiency and productivity</h3>
+                    <p>See how effectively you're using your study time for maximum results.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="checkmark">✔</span>
+                <div class="feature-text">
+                    <h3>Receive AI-powered recommendations for improvement</h3>
+                    <p>Get personalized suggestions to enhance your study strategies.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="checkmark">✔</span>
+                <div class="feature-text">
+                    <h3>Set and monitor academic goals with visual indicators</h3>
+                    <p>Establish targets and track your progress with clear visual feedback.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="feature.html" class="cta-button">Explore Analytics</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for feature items on scroll
+            const featureItems = document.querySelectorAll('.feature-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            featureItems.forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                observer.observe(item);
+            });
+
+            // Smooth scroll for CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dashboardPreview = document.querySelector('.dashboard-preview');
+                    if (dashboardPreview) {
+                        dashboardPreview.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        window.location.href = ctaButton.getAttribute('href'); // Fallback to normal link navigation
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
